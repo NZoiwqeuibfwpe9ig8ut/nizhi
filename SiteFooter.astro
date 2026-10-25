@@ -1,0 +1,64 @@
+---
+import { SITE } from '../config';
+import { withBase } from '../lib/urls';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div>
+        <p class="footer__kicker mono">A NOTE TO THE NEXT VISITOR</p>
+        <p class="footer__statement">
+          把目标拆开。<br />
+          把<em>现场</em>走完。
+        </p>
+      </div>
+
+      <div>
+        <p class="footer__column-title mono">ELSEWHERE</p>
+        <div class="footer__links">
+          {
+            SITE.social.map((link) => (
+              <a
+                href={link.external ? link.href : withBase(link.href)}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+                target={link.external ? '_blank' : undefined}
+              >
+                {link.label}
+                <span aria-hidden="true">{link.external || link.href.startsWith('mailto:') ? '↗' : '↓'}</span>
+              </a>
+            ))
+          }
+          <a href={withBase('archive/')}>All notes / 全部笔记</a>
+          <a href={withBase('about/')}>Field card / 个人履历</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__column-title mono">COLOPHON</p>
+        <div class="footer__links footer__colophon">
+          <p>Astro + Markdown</p>
+          <p>Three.js · 非必需</p>
+          <p>Finance × Practice × Field Notes</p>
+          <p>No trackers. No cookies.</p>
+          <p>Set in Newsreader &amp; Space Grotesk</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__wordmark" aria-hidden="true">
+      <span class="footer__wordmark-en">INLAND</span>
+      <span class="footer__wordmark-cn">向内陆</span>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {year} {SITE.author} · {SITE.title}. Written in public, mostly slowly.</p>
+      <div class="footer__coordinates">
+        <span>{SITE.location}</span>
+        <span>{SITE.coordinates}</span>
+      </div>
+    </div>
+  </div>
+</footer>

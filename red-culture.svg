@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="青衿薪火封面：深红色背景上的宣讲声场放射线与档案纸纹">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="47%" r="55%">
+      <stop offset="0" stop-color="#8f3c28" stop-opacity=".8"/>
+      <stop offset=".62" stop-color="#240e0b" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#140a08" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#170b09"/>
+    <rect width="1200" height="750" fill="url(#glow)"/>
+    <g fill="none" stroke="#d8c5a3">
+      <circle cx="744" cy="370" r="64" opacity=".8" stroke-width="1.1"/>
+      <circle cx="744" cy="370" r="118" opacity=".55" stroke-width="1"/>
+      <circle cx="744" cy="370" r="172" opacity=".4" stroke-width="1"/>
+      <circle cx="744" cy="370" r="226" opacity=".27" stroke-width="1"/>
+      <circle cx="744" cy="370" r="280" opacity=".17" stroke-width="1"/>
+      <circle cx="744" cy="370" r="334" opacity=".1" stroke-width="1"/>
+      <path d="M744 370L1120 90M744 370L1150 752M744 370L266 46M744 370L58 662" opacity=".16"/>
+      <path d="M132 596C280 500 362 440 480 352S690 232 880 268 1074 200 1188 130" stroke="#ec613d" stroke-width="1.4" stroke-dasharray="2 9" opacity=".72"/>
+      <circle cx="744" cy="370" r="4.5" fill="#ec613d" stroke="none"/>
+      <path d="M744 336V366M744 374V404M710 370H740M748 370H778" stroke="#ec613d" opacity=".6"/>
+    </g>
+    <rect x="58" y="114" width="170" height="170" fill="none" stroke="#d8c5a3" stroke-opacity=".22"/>
+    <text x="78" y="150" fill="#d8c5a3" font-family="'Newsreader', Georgia, serif" font-size="44" font-style="italic" opacity=".72">youth</text>
+    <text x="78" y="186" fill="#d8c5a3" font-family="'Newsreader', Georgia, serif" font-size="44" font-style="italic" opacity=".72">inherits</text>
+    <text x="78" y="222" fill="#d8c5a3" font-family="'Newsreader', Georgia, serif" font-size="44" font-style="italic" opacity=".72">the fire</text>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="11" letter-spacing="2.5">
+      <text x="56" y="62" opacity=".78">FIELD NOTE / PROJECT 02</text>
+      <text x="56" y="84" opacity=".38">RED CULTURE / YOUTH SPEAKERS</text>
+      <text x="1144" y="62" text-anchor="end" opacity=".78">2025.06 — NOW</text>
+      <text x="56" y="704" opacity=".38">TEAM / TRAINING / PUBLIC STORYTELLING</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".78">70+ SESSIONS</text>
+    </g>
+    <path d="M56 106H148M1052 674H1144" stroke="#ec613d" opacity=".65"/>
+    <g fill="none" stroke="#ec613d" opacity=".55">
+      <path d="M1040 610h68v44h-68zM1040 610l68 44M1108 610l-68 44"/>
+    </g>
+  </g>
+</svg>

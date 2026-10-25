@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="工具封面：米色网格上的几何工具与橙色圆环">
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#151811" stroke-opacity=".11" stroke-width="1"/>
+    </pattern>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#e9e2d3"/>
+    <rect width="1200" height="750" fill="url(#grid)"/>
+    <rect x="44" y="42" width="1112" height="666" fill="none" stroke="#151811" stroke-opacity=".35"/>
+    <g fill="none" stroke="#151811">
+      <circle cx="892" cy="380" r="205" stroke-width="1.2"/>
+      <circle cx="892" cy="380" r="155" stroke-width="1.2" stroke-dasharray="3 7"/>
+      <circle cx="892" cy="380" r="96" stroke-width="1.2"/>
+      <path d="M892 72V688M584 380H1200" stroke-width="1" opacity=".38"/>
+      <rect x="148" y="196" width="328" height="328" stroke-width="1.4"/>
+      <rect x="198" y="246" width="228" height="228" stroke-width="1.2" opacity=".55"/>
+      <path d="M148 524L476 196M148 196L476 524" stroke-width="1.2" opacity=".62"/>
+    </g>
+    <circle cx="892" cy="380" r="58" fill="none" stroke="#ec613d" stroke-width="16"/>
+    <circle cx="892" cy="380" r="10" fill="#151811"/>
+    <rect x="596" y="582" width="332" height="1" fill="#151811"/>
+    <g fill="#151811" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".75">FIELD NOTE / 002</text>
+      <text x="56" y="88" opacity=".45">INVISIBLE INSTRUMENTS</text>
+      <text x="1144" y="66" text-anchor="end" opacity=".75">A—04</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".45">FORM FOLLOWS ATTENTION</text>
+      <text x="56" y="704" opacity=".45">INLAND / TOOLS</text>
+    </g>
+    <g fill="#ec613d">
+      <circle cx="476" cy="196" r="5"/>
+      <circle cx="148" cy="524" r="5"/>
+      <circle cx="596" cy="582" r="5"/>
+    </g>
+    <path d="M110 610C260 610 330 540 430 540" fill="none" stroke="#ec613d" stroke-width="1.5" stroke-dasharray="2 8"/>
+  </g>
+</svg>

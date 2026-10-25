@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+import { allTags, formatDate, getAllPosts } from '../lib/posts';
+import { postUrl, tagUrl, withBase } from '../lib/urls';
+import '../styles/content.css';
+
+const posts = await getAllPosts();
+const tags = allTags(posts);
+
+const grouped = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = new Date(post.data.date).getFullYear();
+  const group = grouped.get(year) ?? [];
+  group.push(post);
+  grouped.set(year, group);
+}
+
+const years = [...grouped.entries()].sort((a, b) => b[0] - a[0]);
+---
+
+<BaseLayout title="归档" description={`${SITE.title} 的全部文章与标签归档。`}>
+  <section class="page-hero">
+    <div>
+      <p class="page-hero__kicker mono">INDEX / ALL FIELD NOTES</p>
+      <h1 class="page-hero__title">所有走过的路</h1>
+    </div>
+    <aside class="page-hero__aside">
+      <strong>按年份归档</strong>
+      <p>
+        共 {posts.length} 篇笔记，{tags.length} 个标签。没有搜索框，也没有无限下拉，
+        只是把走过的路径按时间摊开。
+      </p>
+    </aside>
+  </section>
+
+  <div class="page-content">
+    <section aria-labelledby="tags-heading">
+      <div class="section-heading">
+        <span class="section-heading__index">00 / TAGS</span>
+        <h2 class="section-heading__title" id="tags-heading">标签索引</h2>
+        <a class="section-heading__link" href={withBase('archive/')}>按时间浏览 ↓</a>
+      </div>
+      <div class="tag-cloud">
+        {tags.map((tag) => (
+          <a class="tag" href={tagUrl(tag.name)}>
+            {tag.name}
+            <span>{String(tag.count).padStart(2, '0')}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <div style="height: clamp(48px, 7vw, 90px);"></div>
+
+    {
+      years.map(([year, yearPosts]) => (
+        <section class="archive-group" aria-labelledby={`year-${year}`}>
+          <h2 class="archive-group__year" id={`year-${year}`}>
+            {year}
+            <span>{yearPosts.length} NOTES</span>
+          </h2>
+          <div class="archive-list">
+            {yearPosts.map((post) => {
+              const date = new Date(post.data.date);
+              return (
+                <a class="archive-item" href={postUrl(post.id)}>
+                  <time class="archive-item__date" datetime={date.toISOString()}>
+                    {formatDate(date, 'short').replace(`${year}.`, '')}
+                  </time>
+                  <span class="archive-item__title">{post.data.title}</span>
+                  <span class="archive-item__arrow" aria-hidden="true">↗</span>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

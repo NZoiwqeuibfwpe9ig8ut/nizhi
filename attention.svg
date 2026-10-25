@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="注意力地形封面：深色等高线场与橙色信标">
+  <defs>
+    <radialGradient id="glow" cx="64%" cy="46%" r="58%">
+      <stop offset="0" stop-color="#44513c" stop-opacity=".62"/>
+      <stop offset=".58" stop-color="#0b0f0c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#090c09" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#090c09" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#090c09"/>
+    <rect width="1200" height="750" fill="url(#glow)"/>
+    <g fill="none" stroke="#c8b99b" stroke-width="1.15">
+      <path opacity=".2" d="M-80 610C120 520 230 626 400 570S700 420 890 470 1110 380 1280 300"/>
+      <path opacity=".24" d="M-80 578C130 478 250 596 418 534S706 384 898 434 1110 342 1280 264"/>
+      <path opacity=".28" d="M-80 544C142 442 260 558 430 496S712 354 904 398 1112 306 1280 228"/>
+      <path opacity=".32" d="M-80 510C150 406 272 522 446 462S718 318 912 362 1116 268 1280 192"/>
+      <path opacity=".37" d="M-80 476C160 370 288 486 462 426S724 280 918 326 1120 230 1280 158"/>
+      <path opacity=".42" d="M-80 442C170 334 306 450 478 390S732 244 924 290 1124 194 1280 124"/>
+      <path opacity=".47" d="M-80 408C180 300 322 414 494 354S740 208 930 254 1128 158 1280 90"/>
+      <path opacity=".52" d="M-80 374C190 266 338 378 510 318S748 172 936 218 1132 122 1280 56"/>
+      <path opacity=".57" d="M-80 340C200 232 354 342 526 282S756 136 942 182 1136 86 1280 22"/>
+      <path opacity=".62" d="M-80 306C210 198 370 306 542 246S764 100 948 146 1140 50 1280 -12"/>
+      <path opacity=".67" d="M-80 272C220 164 386 270 558 210S772 64 954 110 1144 14 1280 -46"/>
+      <path opacity=".72" d="M-80 238C230 130 402 234 574 174S780 28 960 74 1148 -22 1280 -80"/>
+    </g>
+    <g fill="none" stroke="#ec613d">
+      <path opacity=".66" d="M-80 410C180 302 322 416 494 356S740 210 930 256 1128 160 1280 92" stroke-width="1.5" stroke-dasharray="2 8"/>
+      <circle cx="762" cy="416" r="26" opacity=".36"/>
+      <circle cx="762" cy="416" r="7" fill="#ec613d" stroke="none"/>
+      <circle cx="762" cy="416" r="45" opacity=".2" stroke-dasharray="2 6"/>
+      <path d="M762 341V389M762 443V491M687 416H735M789 416H837" opacity=".55"/>
+    </g>
+    <rect width="1200" height="750" fill="url(#fade)"/>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".72">FIELD NOTE / 001</text>
+      <text x="56" y="88" opacity=".34">ATTENTION TERRAIN</text>
+      <text x="1144" y="66" text-anchor="end" opacity=".72">31.2304 N</text>
+      <text x="1144" y="88" text-anchor="end" opacity=".34">ELEV. 072</text>
+      <text x="56" y="704" opacity=".34">INLAND / A PERSONAL FIELD GUIDE</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".72">EC.</text>
+    </g>
+    <path d="M56 112H142M1058 682H1144" stroke="#ec613d" opacity=".7"/>
+  </g>
+</svg>

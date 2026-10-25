@@ -1,0 +1,300 @@
+---
+import { SITE } from '../config';
+import { withBase } from '../lib/urls';
+import HeroTopography from './HeroTopography.astro';
+
+const year = new Date().getFullYear();
+const issue = String(year - Number(SITE.since) + 1).padStart(3, '0');
+---
+
+<section class="hero" data-hero>
+  <div class="hero__field" aria-hidden="true">
+    <div class="hero__backdrop"></div>
+    <HeroTopography />
+    <div class="hero__canvas-wrap">
+      <canvas data-hero-canvas aria-hidden="true"></canvas>
+    </div>
+    <div class="hero__scrim"></div>
+    <div class="hero__grain"></div>
+  </div>
+
+  <div class="hero__coordinates" aria-hidden="true">
+    {SITE.coordinates}
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">
+        <span class="signal-dot" aria-hidden="true"></span>
+        <span>FIELD NOTES / {SITE.since}—{year}</span>
+        <span class="hero__eyebrow-sep" aria-hidden="true"></span>
+        <span>{SITE.location}</span>
+      </p>
+
+      <h1 class="hero__title">
+        <span class="hero__title-line">向内陆，</span>
+        <span class="hero__title-line">让实践留下地形<span class="hero__title-stop">。</span></span>
+      </h1>
+
+      <div class="hero__lede-row">
+        <div class="hero__edition" aria-hidden="true">
+          ISSUE <span>{issue}</span>
+          FINANCE / PRACTICE
+        </div>
+        <p class="hero__lede">
+          我是倪志，财务管理本科生。这里记录助农、红色宣讲、运营实习与校园组织中的真实现场——
+          以及我如何把一件事从想法推进到落地。
+        </p>
+      </div>
+
+      <div class="hero__actions">
+        <a class="button button--light" href="#practice">
+          查看实践
+          <span class="button__arrow" aria-hidden="true">↓</span>
+        </a>
+        <a class="text-link" href={withBase('about/')}>
+          完整履历
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="terrain-panel" aria-label="3D 地形动效说明与开关" data-terrain-panel data-live="false">
+      <div class="terrain-panel__head">
+        <span>FIG. 01</span>
+        <span data-terrain-mode>STATIC TERRAIN</span>
+      </div>
+      <div class="terrain-panel__body">
+        <div>
+          <p class="terrain-panel__title">实践地形</p>
+          <p class="terrain-panel__en">PRACTICE TERRAIN / 28 STRATA</p>
+        </div>
+
+        <div class="terrain-panel__reticle" aria-hidden="true"><span></span></div>
+
+        <div class="terrain-panel__readout" aria-hidden="true">
+          <div>
+            <span>DEPTH</span>
+            <strong data-depth-readout>—</strong>
+          </div>
+          <div>
+            <span>BEARING</span>
+            <strong>NE 037°</strong>
+          </div>
+        </div>
+
+        <button
+          class="motion-toggle"
+          type="button"
+          data-motion-toggle
+          aria-pressed="false"
+          hidden
+        >
+          <span class="motion-toggle__switch" aria-hidden="true">
+            <span class="motion-toggle__thumb"></span>
+          </span>
+          <span>3D 地形动效</span>
+          <span class="motion-toggle__state" data-motion-state>关</span>
+        </button>
+
+        <p class="terrain-panel__hint">滚动穿过地形 / SCROLL TO DESCEND</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hero__foot">
+    <div class="hero__scroll">
+      <span class="scroll-cue__line" aria-hidden="true"></span>
+      <span>SCROLL TO DESCEND / 向下进入</span>
+    </div>
+    <div class="hero__foot-note">静态内容优先 · 动效随时可关</div>
+  </div>
+</section>
+
+<script>
+  const STORAGE_KEY = 'inland:motion';
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+  const canvasWrap = canvas?.parentElement as HTMLElement | null;
+  const toggles = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-motion-toggle]'));
+  const depthReadout = document.querySelector<HTMLElement>('[data-depth-readout]');
+  const terrainPanel = document.querySelector<HTMLElement>('[data-terrain-panel]');
+  const terrainMode = document.querySelector<HTMLElement>('[data-terrain-mode]');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  type SceneHandle = import('../scripts/hero-terrain').HeroTerrainHandle;
+  let scene: SceneHandle | null = null;
+  let desired = false;
+  let token = 0;
+  let sceneFailed = false;
+  let lastDepth = -1;
+
+  const readSaved = (): string | null => {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  };
+
+  const writeSaved = (value: 'on' | 'off'): void => {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch {
+      /* Private modes can refuse storage. The session still works. */
+    }
+  };
+
+  function setUi(enabled: boolean, state: string, opts: { disabled?: boolean } = {}): void {
+    document.documentElement.dataset.motion = enabled ? 'on' : 'off';
+    hero?.setAttribute('data-motion', enabled ? 'on' : 'off');
+
+    for (const button of toggles) {
+      button.hidden = false;
+      button.setAttribute('aria-pressed', String(enabled));
+      button.disabled = Boolean(opts.disabled);
+      button.setAttribute('aria-busy', state === '载入' ? 'true' : 'false');
+      const label = button.querySelector<HTMLElement>('[data-motion-state]');
+      if (label) label.textContent = state;
+    }
+  }
+
+  function setReady(on: boolean): void {
+    canvasWrap?.classList.toggle('is-ready', on);
+    hero?.classList.toggle('is-webgl', on);
+  }
+
+  function setTerrainMode(live: boolean): void {
+    if (terrainMode) terrainMode.textContent = live ? 'LIVE TERRAIN' : 'STATIC TERRAIN';
+    if (terrainPanel) terrainPanel.dataset.live = String(live);
+  }
+
+  function reportDepth(progress: number): void {
+    if (!depthReadout) return;
+    const value = Math.round(progress * 840) / 100;
+    if (value === lastDepth) return;
+    lastDepth = value;
+    depthReadout.textContent = `−${value.toFixed(2)}`;
+  }
+
+  async function enableScene(fromUser = false): Promise<void> {
+    if (!canvas || sceneFailed) return;
+    desired = true;
+    const current = ++token;
+    setUi(true, scene ? '开' : '载入');
+
+    if (scene) {
+      setReady(true);
+      setTerrainMode(true);
+      scene.resume();
+      if (depthReadout) depthReadout.textContent = '−0.00';
+      lastDepth = -1;
+      if (fromUser) writeSaved('on');
+      return;
+    }
+
+    try {
+      const module = await import('../scripts/hero-terrain');
+      if (current !== token || !desired) return;
+      scene = module.mountHeroTerrain(canvas, { onProgress: reportDepth });
+      setReady(true);
+      setTerrainMode(true);
+      setUi(true, '开');
+      if (fromUser) writeSaved('on');
+    } catch (error) {
+      console.warn('[INLAND] 3D terrain could not start; the static field remains.', error);
+      sceneFailed = true;
+      desired = false;
+      setReady(false);
+      setTerrainMode(false);
+      setUi(false, '不可用', { disabled: true });
+    }
+  }
+
+  function disableScene(persist: boolean): void {
+    desired = false;
+    token += 1;
+    scene?.pause();
+    setReady(false);
+    setTerrainMode(false);
+    setUi(false, '关');
+    if (depthReadout) {
+      depthReadout.textContent = '—';
+      lastDepth = -1;
+    }
+    if (persist) writeSaved('off');
+  }
+
+  function toggleMotion(): void {
+    if (sceneFailed) return;
+    if (desired) {
+      disableScene(true);
+    } else {
+      void enableScene(true);
+    }
+  }
+
+  function scheduleEnhancement(): void {
+    if (!desired || sceneFailed) return;
+    let started = false;
+    let fallbackTimer = 0;
+    let lcpObserver: PerformanceObserver | null = null;
+
+    const start = () => {
+      if (started || !desired) return;
+      started = true;
+      if (lcpObserver) lcpObserver.disconnect();
+      window.clearTimeout(fallbackTimer);
+      const load = () => {
+        if (desired) void enableScene(false);
+      };
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(load, { timeout: 1200 });
+      } else {
+        window.setTimeout(load, 350);
+      }
+    };
+
+    if ('PerformanceObserver' in window) {
+      try {
+        lcpObserver = new PerformanceObserver((list) => {
+          if (list.getEntries().length > 0) {
+            window.clearTimeout(fallbackTimer);
+            // Let the browser paint the winning LCP frame before loading Three.
+            window.setTimeout(start, 180);
+          }
+        });
+        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+      } catch {
+        lcpObserver = null;
+      }
+    }
+
+    fallbackTimer = window.setTimeout(start, 2600);
+  }
+
+  const saved = readSaved();
+  desired = !motionQuery.matches && saved !== 'off';
+  setUi(desired, desired ? '准备' : '关');
+  setTerrainMode(false);
+
+  for (const button of toggles) {
+    button.addEventListener('click', toggleMotion);
+  }
+
+  const onMotionPreferenceChange = (event: MediaQueryListEvent): void => {
+    if (event.matches && desired) {
+      disableScene(false);
+    }
+  };
+
+  if (typeof motionQuery.addEventListener === 'function') {
+    motionQuery.addEventListener('change', onMotionPreferenceChange);
+  }
+
+  if (document.readyState === 'complete') {
+    scheduleEnhancement();
+  } else {
+    window.addEventListener('load', scheduleEnhancement, { once: true });
+  }
+</script>

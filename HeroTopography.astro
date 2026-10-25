@@ -1,0 +1,85 @@
+---
+import {
+  buildContours,
+  insideIsland,
+  islandBoundary,
+  makeLevels,
+  segmentsToPaths,
+  terrainHeight,
+} from '../lib/contours';
+
+const levels = makeLevels(14, 0.07, 0.93);
+const segments = buildContours({ extent: 9.5, resolution: 66, levels, clip: insideIsland });
+
+const project = (x: number, z: number, level: number): [number, number] => [
+  535 + x * 39 + z * 9,
+  382 + z * 19 - (level - 0.5) * 170,
+];
+
+const pathGroups = [...segmentsToPaths(segments, project).entries()].sort(
+  (a, b) => a[0] - b[0],
+);
+
+const outlinePath = islandBoundary(128)
+  .map(([x, z], index) => {
+    const [px, py] = project(x, z, 0.035);
+    return `${index === 0 ? 'M' : 'L'}${px.toFixed(1)} ${py.toFixed(1)}`;
+  })
+  .join('') + 'Z';
+
+const beaconX = 2.5;
+const beaconZ = -0.9;
+const [beaconPX, beaconPY] = project(beaconX, beaconZ, terrainHeight(beaconX, beaconZ));
+---
+
+<svg
+  class="hero__topography"
+  viewBox="0 0 1000 760"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g class="topo-route">
+    <path
+      d="M80 620C210 500 345 600 495 510S745 340 925 168"
+      class="contour contour--axis"
+    />
+    <path
+      d="M110 690C280 560 440 650 610 545S840 400 970 285"
+      class="contour contour--axis contour--quiet"
+    />
+  </g>
+
+  <g class="topo-contours">
+    <path class="contour contour--outline" d={outlinePath} />
+    {
+      pathGroups.map(([level, path], index) => {
+        const accent = index % 5 === 0;
+        const opacity = 0.3 + (index / pathGroups.length) * 0.55;
+        const width = accent ? 1.25 : 0.8;
+        return (
+          <path
+            class:list={['contour', accent && 'contour--signal']}
+            d={path}
+            style={`opacity:${opacity.toFixed(2)};stroke-width:${width}`}
+          />
+        );
+      })
+    }
+  </g>
+
+  <g class="topo-markings">
+    <circle cx={beaconPX} cy={beaconPY} r="16" />
+    <circle cx={beaconPX} cy={beaconPY} r="3.2" />
+    <path
+      d={`M${beaconPX - 30} ${beaconPY}H${beaconPX - 9}M${beaconPX + 9} ${beaconPY}H${beaconPX + 30}M${beaconPX} ${beaconPY - 30}V${beaconPY - 9}M${beaconPX} ${beaconPY + 9}V${beaconPY + 30}`}
+    />
+    <path d="M72 78V50H100M928 78V50H900M72 682V710H100M928 682V710H900" />
+    <text x="112" y="76">FIG. 01 — PRACTICE TERRAIN</text>
+    <text x="112" y="92" class="contour-faint">29.5630 N / 106.5516 E</text>
+    <text x="730" y="664">SECTION A—A′ / SCALE 1:2500</text>
+    <path d="M780 712H900M780 708V716M840 708V716M900 708V716" />
+    <text x="780" y="700" class="contour-faint">0</text>
+    <text x="900" y="700" class="contour-faint" text-anchor="end">10 KM</text>
+  </g>
+</svg>

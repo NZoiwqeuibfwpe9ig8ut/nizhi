@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="内陆默认封面：深色等高线地形">
+  <defs>
+    <radialGradient id="glow" cx="65%" cy="50%" r="55%">
+      <stop offset="0" stop-color="#45513d" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#0b0f0c" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#0b0f0c"/>
+    <rect width="1200" height="750" fill="url(#glow)"/>
+    <g fill="none" stroke="#c8b99b">
+      <path opacity=".26" d="M-80 610C130 500 280 620 440 540S700 400 900 450 1120 330 1280 270"/>
+      <path opacity=".34" d="M-80 565C140 455 290 575 450 495S706 355 906 405 1124 285 1280 225"/>
+      <path opacity=".42" d="M-80 520C150 410 300 530 460 450S712 310 912 360 1128 240 1280 180"/>
+      <path opacity=".5" d="M-80 475C160 365 310 485 470 405S718 265 918 315 1132 195 1280 135"/>
+      <path opacity=".58" d="M-80 430C170 320 320 440 480 360S724 220 924 270 1136 150 1280 90"/>
+      <path opacity=".66" d="M-80 385C180 275 330 395 490 315S730 175 930 225 1140 105 1280 45"/>
+    </g>
+    <g fill="none" stroke="#ec613d">
+      <circle cx="816" cy="390" r="5" fill="#ec613d" stroke="none"/>
+      <circle cx="816" cy="390" r="28" opacity=".3" stroke-dasharray="2 6"/>
+      <path d="M816 320V360M816 420V460M746 390H786M846 390H886" opacity=".5"/>
+    </g>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".75">INLAND / FIELD NOTE</text>
+      <text x="56" y="88" opacity=".38">A PERSONAL FIELD GUIDE</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".38">31.2304 N / 121.4737 E</text>
+    </g>
+  </g>
+</svg>

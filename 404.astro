@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import '../styles/content.css';
+---
+
+<BaseLayout
+  title="页面未找到"
+  description="这条路径还没有被绘制出来。"
+  noindex={true}
+>
+  <section class="not-found">
+    <span class="not-found__code" aria-hidden="true">404</span>
+    <div class="not-found__inner">
+      <p class="eyebrow mono" style="justify-content: center; margin-bottom: 20px;">OFF THE MAP</p>
+      <h1 class="not-found__title">这条路还没有<br />被绘制出来。</h1>
+      <p class="not-found__text">
+        你抵达了地图边缘之外。回到首页，或者从归档里重新选一条路。
+      </p>
+      <a class="button" href={withBase('')} style="margin-inline: auto;">
+        回到首页
+        <span class="button__arrow" aria-hidden="true">↖</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

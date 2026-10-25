@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="网页封面：米色纸张上的深色网页窗口与层叠矩形">
+  <defs>
+    <pattern id="smallgrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#151811" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#f2eee4"/>
+    <rect width="1200" height="750" fill="url(#smallgrid)"/>
+    <rect x="112" y="118" width="742" height="502" fill="#151811"/>
+    <rect x="112" y="118" width="742" height="44" fill="#262b22"/>
+    <circle cx="140" cy="140" r="4" fill="#ec613d"/>
+    <circle cx="157" cy="140" r="4" fill="#c8b99b" opacity=".5"/>
+    <circle cx="174" cy="140" r="4" fill="#c8b99b" opacity=".5"/>
+    <text x="220" y="145" fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="10" letter-spacing="2" opacity=".6">INLAND.ROOM</text>
+    <g fill="none" stroke="#c8b99b" stroke-width="1.1">
+      <path opacity=".28" d="M112 520C232 450 292 562 412 500S590 408 664 448 790 428 854 382"/>
+      <path opacity=".36" d="M112 486C240 414 302 526 424 464S596 372 670 412 794 392 854 346"/>
+      <path opacity=".44" d="M112 452C248 380 312 490 436 428S602 336 676 376 798 356 854 310"/>
+      <path opacity=".55" d="M112 418C256 346 322 454 448 392S608 300 682 340 802 320 854 274"/>
+      <path opacity=".66" d="M112 384C264 312 332 418 460 356S614 264 688 304 806 284 854 238"/>
+    </g>
+    <circle cx="490" cy="316" r="20" fill="none" stroke="#ec613d" stroke-width="1.3"/>
+    <circle cx="490" cy="316" r="5" fill="#ec613d"/>
+    <path d="M434 316H466M514 316H546M490 260V292M490 340V372" stroke="#ec613d" opacity=".5"/>
+    <g fill="none" stroke="#151811">
+      <rect x="878" y="208" width="236" height="318" stroke-opacity=".55"/>
+      <rect x="908" y="242" width="176" height="250" stroke-opacity=".32"/>
+      <path d="M878 556H1114M878 556V588M1114 556V588" stroke-opacity=".42"/>
+    </g>
+    <text x="908" y="280" fill="#151811" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" letter-spacing="2" opacity=".55">ROOM / 04</text>
+    <text x="908" y="470" fill="#151811" font-family="'Newsreader', Georgia, serif" font-size="38" font-style="italic">a room</text>
+    <g fill="#151811" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".75">FIELD NOTE / 004</text>
+      <text x="56" y="88" opacity=".45">A SMALL WEBSITE AS A ROOM</text>
+      <text x="1144" y="66" text-anchor="end" opacity=".75">HTML / 01</text>
+      <text x="56" y="704" opacity=".45">INLAND / WEB</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".45">NO TRACKERS. NO COOKIES.</text>
+    </g>
+  </g>
+</svg>

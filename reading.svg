@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="阅读封面：深色背景上同心弧线与水平细线">
+  <defs>
+    <radialGradient id="warm" cx="72%" cy="46%" r="45%">
+      <stop offset="0" stop-color="#5a4b34" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#0b0f0c" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#0b0f0c"/>
+    <rect width="1200" height="750" fill="url(#warm)"/>
+    <g fill="none" stroke="#c8b99b">
+      <circle cx="878" cy="380" r="248" stroke-width="1" opacity=".36"/>
+      <circle cx="878" cy="380" r="206" stroke-width="1" opacity=".3"/>
+      <circle cx="878" cy="380" r="164" stroke-width="1" opacity=".24"/>
+      <circle cx="878" cy="380" r="122" stroke-width="1" opacity=".2"/>
+      <circle cx="878" cy="380" r="80" stroke-width="1" opacity=".16"/>
+      <circle cx="878" cy="380" r="38" stroke-width="1" opacity=".12"/>
+      <path d="M878 90V670M588 380H1168" stroke-width="1" opacity=".14"/>
+      <path d="M660 470C780 420 930 440 1090 372" stroke="#ec613d" stroke-width="1.4" stroke-dasharray="3 9" opacity=".74"/>
+      <circle cx="878" cy="380" r="11" fill="#ec613d" stroke="none"/>
+      <circle cx="878" cy="380" r="31" stroke="#ec613d" opacity=".35"/>
+    </g>
+    <g stroke="#e9e2d3" stroke-width="1" opacity=".29">
+      <path d="M94 214H580M94 246H534M94 278H580M94 310H492M94 342H556"/>
+      <path d="M94 410H580M94 442H512M94 474H580M94 506H536M94 538H580"/>
+    </g>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".75">FIELD NOTE / 005</text>
+      <text x="56" y="88" opacity=".36">THE SENTENCE THAT LIGHTS UP</text>
+      <text x="1144" y="66" text-anchor="end" opacity=".75">READ / SLOW</text>
+      <text x="56" y="704" opacity=".36">INLAND / READING NOTES</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".75">P. 127</text>
+    </g>
+    <path d="M56 112H142" stroke="#ec613d"/>
+    <text x="620" y="404" fill="#e9e2d3" font-family="'Newsreader', Georgia, serif" font-size="44" font-style="italic" opacity=".62">read between</text>
+  </g>
+</svg>

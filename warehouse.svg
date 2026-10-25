@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="仓库与景区封面：米色蓝图网格上的货架、条码与台账线条">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#151811" stroke-opacity=".08"/>
+    </pattern>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#ece5d5"/>
+    <rect width="1200" height="750" fill="url(#grid)"/>
+    <g fill="none" stroke="#151811">
+      <rect x="90" y="160" width="520" height="410" stroke-opacity=".45"/>
+      <path d="M90 290H610M90 420H610M210 160V570M340 160V570M470 160V570" stroke-opacity=".3"/>
+      <rect x="118" y="194" width="62" height="62" stroke-opacity=".5"/>
+      <rect x="238" y="194" width="72" height="62" stroke-opacity=".35"/>
+      <rect x="368" y="194" width="72" height="62" stroke-opacity=".5"/>
+      <rect x="498" y="194" width="84" height="62" stroke-opacity=".35"/>
+      <rect x="118" y="340" width="72" height="44" stroke-opacity=".35"/>
+      <rect x="238" y="340" width="72" height="44" stroke-opacity=".5"/>
+      <rect x="368" y="340" width="72" height="44" stroke-opacity=".35"/>
+      <rect x="498" y="340" width="84" height="44" stroke-opacity=".5"/>
+      <path d="M82 186h16M82 210h16M82 234h16M610 480h18M610 504h18M610 528h18" stroke-opacity=".5"/>
+    </g>
+    <g stroke="#151811" fill="none" stroke-opacity=".6">
+      <path d="M690 154V574M690 154H730M690 220H722M690 286H738M690 352H722M690 418H738M690 484H722M690 550H738"/>
+    </g>
+    <g fill="#151811" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" letter-spacing="1.5" opacity=".45">
+      <text x="746" y="158">IN</text>
+      <text x="746" y="224">OUT</text>
+      <text x="746" y="290">STOCK</text>
+      <text x="746" y="356">DOC</text>
+      <text x="746" y="422">COUNT</text>
+      <text x="746" y="488">SAFE</text>
+      <text x="746" y="554">FILE</text>
+    </g>
+    <g fill="none" stroke="#ec613d">
+      <rect x="832" y="176" width="232" height="286" stroke-width="1.6"/>
+      <rect x="864" y="208" width="168" height="104" stroke-width="1"/>
+      <path d="M864 344H1032M864 370H1000M864 396H1032M864 422H970" stroke-width="1" opacity=".7"/>
+      <circle cx="1018" cy="500" r="22" stroke-width="1.4"/>
+      <path d="M1018 472V486M1018 514V528M990 500H1004M1032 500H1046" stroke-width="1"/>
+    </g>
+    <g stroke="#151811" stroke-width="2" opacity=".65">
+      <path d="M858 610V584M868 610V584M878 610V584M894 610V584M902 610V584M912 610V584M924 610V584M938 610V584M946 610V584M960 610V584M972 610V584M986 610V584M1000 610V584M1010 610V584M1024 610V584M1036 610V584"/>
+    </g>
+    <g fill="#151811" font-family="'JetBrains Mono', Consolas, monospace" font-size="11" letter-spacing="2.5">
+      <text x="56" y="62" opacity=".78">FIELD NOTE / 003</text>
+      <text x="56" y="84" opacity=".4">WAREHOUSE × SCENIC AREA</text>
+      <text x="1144" y="62" text-anchor="end" opacity=".78">2025.07 — 2026.09</text>
+      <text x="56" y="704" opacity=".4">INTERNSHIP / OPERATIONS ON SITE</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".78">99% ACCURACY</text>
+    </g>
+    <path d="M56 106H148M1052 674H1144" stroke="#ec613d" opacity=".65"/>
+  </g>
+</svg>

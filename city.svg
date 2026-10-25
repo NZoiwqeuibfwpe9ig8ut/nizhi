@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="城市封面：深绿色街区地图、浅色河流与橙色步行路线">
+  <defs>
+    <pattern id="blocks" width="130" height="110" patternUnits="userSpaceOnUse">
+      <rect x="8" y="8" width="48" height="36" fill="none" stroke="#94a08c" stroke-opacity=".22"/>
+      <rect x="70" y="8" width="44" height="36" fill="none" stroke="#94a08c" stroke-opacity=".16"/>
+      <rect x="8" y="58" width="48" height="38" fill="none" stroke="#94a08c" stroke-opacity=".16"/>
+      <rect x="70" y="58" width="44" height="38" fill="none" stroke="#94a08c" stroke-opacity=".22"/>
+    </pattern>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#0d130e"/>
+    <rect width="1200" height="750" fill="url(#blocks)"/>
+    <path d="M-60 220C150 260 210 360 330 370S530 330 640 400 770 560 980 570 1150 500 1260 520"
+      fill="none" stroke="#c8b99b" stroke-width="82" stroke-opacity=".17"/>
+    <path d="M-60 220C150 260 210 360 330 370S530 330 640 400 770 560 980 570 1150 500 1260 520"
+      fill="none" stroke="#e9e2d3" stroke-width="2"/>
+    <path d="M-60 258C150 296 218 394 338 404S530 364 642 434 774 594 984 604 1150 534 1260 554"
+      fill="none" stroke="#c8b99b" stroke-width="1" stroke-opacity=".35"/>
+    <g fill="none" stroke="#ec613d">
+      <path d="M92 610C228 548 286 438 426 430S600 508 700 438 818 236 1004 198"
+        stroke-width="2" stroke-dasharray="4 10"/>
+      <circle cx="92" cy="610" r="9" fill="#ec613d" stroke="none"/>
+      <circle cx="1004" cy="198" r="14" stroke-width="1.2"/>
+      <circle cx="1004" cy="198" r="4" fill="#ec613d" stroke="none"/>
+    </g>
+    <g fill="none" stroke="#e9e2d3" stroke-opacity=".24">
+      <path d="M0 94H1200M0 686H1200M92 0V750M1108 0V750"/>
+      <path d="M92 94H180M92 94V180M1108 686H1020M1108 686V600"/>
+    </g>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="3">
+      <text x="56" y="66" opacity=".8">FIELD NOTE / 003</text>
+      <text x="56" y="88" opacity=".38">A WALK WITHOUT A DESTINATION</text>
+      <text x="1144" y="66" text-anchor="end" opacity=".8">31.2304 N / 121.4737 E</text>
+      <text x="56" y="704" opacity=".38">SUZHOU CREEK / 16:00—18:20</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".8">ROUTE 03</text>
+    </g>
+    <text x="654" y="478" fill="#e9e2d3" font-family="'Newsreader', Georgia, serif" font-size="64" font-style="italic" opacity=".82">follow the water</text>
+  </g>
+</svg>

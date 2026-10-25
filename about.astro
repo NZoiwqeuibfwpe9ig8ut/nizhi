@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+import {
+  PROFILE,
+  PROJECTS,
+  INTERNSHIPS,
+  LEADERSHIP,
+  EDUCATION,
+  SKILLS,
+  HONORS,
+} from '../data/profile';
+import { postUrl, withBase } from '../lib/urls';
+import '../styles/content.css';
+
+const portrait = withBase('portrait.png');
+---
+
+<BaseLayout
+  title="关于"
+  description={`${PROFILE.name}的个人履历：${PROFILE.school}财务管理本科生，记录项目、实习与组织现场。`}
+>
+  <section class="page-hero">
+    <div>
+      <p class="page-hero__kicker mono">ABOUT / FIELD CARD · 2026</p>
+      <h1 class="page-hero__title">向内陆，<br />也向现场。</h1>
+    </div>
+    <aside class="page-hero__aside">
+      <strong>{PROFILE.name} / {PROFILE.latinName}</strong>
+      <p>
+        财务管理本科生，项目实践者。喜欢把复杂的事拆成可执行的步骤，
+        也相信真正的答案通常不在会议室，而在现场。
+      </p>
+      <div class="about-availability">
+        <span class="signal-dot" aria-hidden="true"></span>
+        求职方向：{PROFILE.target}
+      </div>
+    </aside>
+  </section>
+
+  <div class="page-content">
+    <div class="about-grid">
+      <aside class="about-card" aria-label="个人名片">
+        <div class="about-card__portrait">
+          <img
+            src={portrait}
+            alt={`${PROFILE.name}的肖像`}
+            width="246"
+            height="328"
+            loading="eager"
+            decoding="async"
+          />
+          <span class="about-card__photo-label">PORTRAIT / 01</span>
+          <span class="about-card__seal">倪志<br />FIELD CARD</span>
+        </div>
+        <div class="about-card__info">
+          <p class="about-card__name">{PROFILE.name}</p>
+          <p class="about-card__role">财务管理本科生 / 项目实践者</p>
+          <div class="about-card__facts">
+            <div class="about-card__fact">
+              <span>学校</span>
+              <span>{PROFILE.school}</span>
+            </div>
+            <div class="about-card__fact">
+              <span>专业</span>
+              <span>{PROFILE.major}</span>
+            </div>
+            <div class="about-card__fact">
+              <span>成绩</span>
+              <span>{PROFILE.ranking}</span>
+            </div>
+            <div class="about-card__fact">
+              <span>位置</span>
+              <span>{PROFILE.location}</span>
+            </div>
+            <div class="about-card__fact">
+              <span>邮箱</span>
+              <span><a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a></span>
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <a class="button" href={`mailto:${PROFILE.email}`} style="min-width: 0; width: 100%;">
+              写信给我
+              <span class="button__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="about-body">
+        <p class="lead">
+          你好，我是{PROFILE.name}。一个在财务数字与项目现场之间来回走的人，
+          也是那个愿意把活动流程、库存台账和宣讲排班<em>一遍遍捋顺</em>的人。
+        </p>
+
+        <p>
+          我在重庆移通学院读财务管理，专业排名前 15%、班级第一。
+          课堂给了我理解数字的框架；助农项目、红色宣讲、学生会和两段运营实习，
+          则让我知道数字落到现场之后，究竟长什么样。
+        </p>
+
+        <div class="about-contact-strip">
+          <div>
+            <span class="mono">CURRENTLY LOOKING FOR</span>
+            <strong>{PROFILE.target}</strong>
+          </div>
+          <p>2027 届 · 可实习 / 校招 · 重庆</p>
+        </div>
+
+        <section class="cv-section" id="education">
+          <div class="cv-section__heading">
+            <span class="mono">01 / EDUCATION</span>
+            <h2>教育背景</h2>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry__head">
+              <div>
+                <p class="cv-entry__period">{EDUCATION.period}</p>
+                <h3>{EDUCATION.school}</h3>
+                <p class="cv-entry__role">{EDUCATION.major} · {EDUCATION.ranking}</p>
+              </div>
+            </div>
+            <div class="cv-keywords">
+              {EDUCATION.courses.map((course) => <span>{course}</span>)}
+            </div>
+            <p class="cv-entry__summary">{EDUCATION.note}</p>
+          </div>
+        </section>
+
+        <section class="cv-section" id="projects">
+          <div class="cv-section__heading">
+            <span class="mono">02 / PROJECTS</span>
+            <h2>项目现场</h2>
+          </div>
+
+          {
+            PROJECTS.map((project) => (
+              <article class="cv-entry" id={`project-${project.id}`}>
+                <div class="cv-entry__head">
+                  <div>
+                    <p class="cv-entry__period">{project.period}</p>
+                    <h3>{project.title}</h3>
+                    <p class="cv-entry__role">{project.role}</p>
+                  </div>
+                  {project.postId && (
+                    <a class="cv-entry__link" href={postUrl(project.postId)}>
+                      项目复盘 <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+                <p class="cv-entry__summary">{project.summary}</p>
+                <dl class="cv-metrics">
+                  {project.metrics.map((metric) => (
+                    <div>
+                      <dt>{metric.label}</dt>
+                      <dd>{metric.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <ul class="cv-points">
+                  {project.highlights.map((highlight) => <li>{highlight}</li>)}
+                </ul>
+                <div class="tag-list">
+                  {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+              </article>
+            ))
+          }
+        </section>
+
+        <section class="cv-section" id="internships">
+          <div class="cv-section__heading">
+            <span class="mono">03 / INTERNSHIPS</span>
+            <h2>实习现场</h2>
+          </div>
+
+          {
+            INTERNSHIPS.map((internship) => (
+              <article class="cv-entry">
+                <div class="cv-entry__head">
+                  <div>
+                    <p class="cv-entry__period">{internship.period}</p>
+                    <h3>{internship.company}</h3>
+                    <p class="cv-entry__role">{internship.role}</p>
+                  </div>
+                </div>
+                <p class="cv-entry__summary">{internship.summary}</p>
+                <dl class="cv-metrics">
+                  {internship.metrics.map((metric) => (
+                    <div>
+                      <dt>{metric.label}</dt>
+                      <dd>{metric.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <ul class="cv-points">
+                  {internship.highlights.map((highlight) => <li>{highlight}</li>)}
+                </ul>
+              </article>
+            ))
+          }
+        </section>
+
+        <section class="cv-section" id="leadership">
+          <div class="cv-section__heading">
+            <span class="mono">04 / LEADERSHIP</span>
+            <h2>组织现场</h2>
+          </div>
+          <article class="cv-entry">
+            <div class="cv-entry__head">
+              <div>
+                <p class="cv-entry__period">{LEADERSHIP.period}</p>
+                <h3>{LEADERSHIP.organization}</h3>
+                <p class="cv-entry__role">{LEADERSHIP.role}</p>
+              </div>
+            </div>
+            <p class="cv-entry__summary">{LEADERSHIP.summary}</p>
+            <dl class="cv-metrics">
+              {LEADERSHIP.metrics.map((metric) => (
+                <div>
+                  <dt>{metric.label}</dt>
+                  <dd>{metric.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <ul class="cv-points">
+              {LEADERSHIP.highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+          </article>
+        </section>
+
+        <section class="cv-section" id="skills">
+          <div class="cv-section__heading">
+            <span class="mono">05 / CAPABILITIES</span>
+            <h2>能力地图</h2>
+          </div>
+          <div class="skill-grid">
+            {
+              SKILLS.map((group) => (
+                <div class="skill-group">
+                  <span class="mono">{group.en}</span>
+                  <h3>{group.title}</h3>
+                  <ul>
+                    {group.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <section class="cv-section" id="honors">
+          <div class="cv-section__heading">
+            <span class="mono">06 / HONORS</span>
+            <h2>荣誉与证书</h2>
+          </div>
+          <div class="honor-stats">
+            <div><strong>40+</strong><span>国家级 / 省部级 / 校级奖项</span></div>
+            <div><strong>¥15,000+</strong><span>累计奖学金</span></div>
+            <div><strong>380+</strong><span>志愿服务小时</span></div>
+          </div>
+          <div class="honor-list">
+            {
+              HONORS.map((honor) => (
+                <div class="honor-row">
+                  <span class="honor-row__level">{honor.level}</span>
+                  <span class="honor-row__title">{honor.title}</span>
+                  <span class="honor-row__result">{honor.result}</span>
+                </div>
+              ))
+            }
+          </div>
+          <p class="cv-note">以上为节选；完整荣誉共 40 余项，覆盖公益、创新创业、财务案例与校园服务。</p>
+        </section>
+
+        <section class="cv-section" id="contact">
+          <div class="cv-section__heading">
+            <span class="mono">07 / CONTACT</span>
+            <h2>保持联系</h2>
+          </div>
+          <p>
+            如果你正在寻找一名能在财务、行政或运营现场把事情推进下去的 2027 届毕业生，
+            欢迎写信给我：<a href={`mailto:${PROFILE.email}`}>{PROFILE.email}</a>。
+            也可以查看我的 <a href={SITE.github} rel="noopener noreferrer" target="_blank">GitHub</a>。
+          </p>
+          <p class="cv-note">
+            为保护隐私，简历中的联系电话不在网页公开；邮件是最快的联系方式。
+          </p>
+        </section>
+
+        <div class="about-signoff">
+          <strong>把目标拆开，把现场走完。</strong>
+          {PROFILE.name} / {PROFILE.latinName} · {PROFILE.school} · {PROFILE.period}
+          <br />
+          <a href={withBase('archive/')}>从现场笔记开始走 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-label="稻香商链封面：深绿色梯田、稻穗与橙色太阳">
+  <defs>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ec613d" stop-opacity=".9"/>
+      <stop offset=".7" stop-color="#ec613d" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ec613d" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1200" height="750"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="750" fill="#0b1410"/>
+    <circle cx="887" cy="248" r="210" fill="url(#sun)"/>
+    <circle cx="887" cy="248" r="64" fill="none" stroke="#ec613d" stroke-width="1.2" stroke-dasharray="2 7" opacity=".8"/>
+    <circle cx="887" cy="248" r="5" fill="#ec613d"/>
+    <g fill="none" stroke="#b7c6a3" stroke-width="1.2">
+      <path opacity=".18" d="M-80 610C110 520 230 590 390 520S650 420 840 455 1080 330 1260 260"/>
+      <path opacity=".24" d="M-80 574C120 484 248 552 410 482S664 382 852 417 1084 292 1260 222"/>
+      <path opacity=".3" d="M-80 538C130 448 266 514 430 444S678 344 864 379 1088 254 1260 184"/>
+      <path opacity=".36" d="M-80 502C140 412 284 476 450 406S692 306 876 341 1092 216 1260 146"/>
+      <path opacity=".44" d="M-80 466C150 376 302 438 470 368S706 268 888 303 1096 178 1260 108"/>
+      <path opacity=".52" d="M-80 430C160 340 320 400 490 330S720 230 900 265 1100 140 1260 70"/>
+      <path opacity=".6" d="M-80 394C170 304 338 362 510 292S734 192 912 227 1104 102 1260 32"/>
+    </g>
+    <g fill="none" stroke="#ec613d">
+      <path d="M84 628C210 548 318 572 438 500S648 360 814 378 1020 258 1150 190" stroke-width="1.4" stroke-dasharray="3 9" opacity=".8"/>
+      <circle cx="814" cy="378" r="7" fill="#ec613d" stroke="none"/>
+      <circle cx="814" cy="378" r="28" opacity=".35" stroke-dasharray="2 5"/>
+    </g>
+    <g stroke="#d9c9a6" stroke-width="1.1" opacity=".5">
+      <path d="M262 664V520M282 664V500M302 664V540"/>
+      <path d="M262 560C240 528 236 492 252 464M262 560C284 528 290 488 276 456M282 540C260 512 258 480 274 452M282 540C306 510 310 476 296 446M302 580C280 552 278 520 294 492M302 580C326 550 330 516 316 486"/>
+    </g>
+    <g fill="#c8b99b" font-family="'JetBrains Mono', Consolas, monospace" font-size="11" letter-spacing="2.5">
+      <text x="56" y="62" opacity=".78">FIELD NOTE / PROJECT 01</text>
+      <text x="56" y="84" opacity=".38">RICE–FISH SYMBIOSIS / HE CHUAN</text>
+      <text x="1144" y="62" text-anchor="end" opacity=".78">2024.09 — NOW</text>
+      <text x="56" y="704" opacity=".38">AID AGRICULTURE / SALES CHAIN</text>
+      <text x="1144" y="704" text-anchor="end" opacity=".78">REPURCHASE 40%</text>
+    </g>
+    <g fill="#ec613d" font-family="'JetBrains Mono', Consolas, monospace" font-size="9" letter-spacing="2">
+      <text x="798" y="704" opacity=".8">ONLINE 60%+</text>
+    </g>
+    <path d="M56 106H148M1052 674H1144" stroke="#ec613d" opacity=".65"/>
+  </g>
+</svg>

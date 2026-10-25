@@ -1,0 +1,46 @@
+---
+import { NAV, SITE } from '../config';
+import { withBase } from '../lib/urls';
+
+interface Props {
+  overlay?: boolean;
+}
+
+const { overlay = false } = Astro.props;
+const path = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href.includes('#')) return false;
+  const clean = href.replace(/^\/|\/$/g, '');
+  return clean.length > 0 && path.includes(clean);
+}
+---
+
+<header class:list={['site-header', overlay ? 'site-header--overlay' : 'site-header--solid']}>
+  <a class="brand" href={withBase('')} aria-label={`${SITE.title} 首页`}>
+    <span class="brand__mark" aria-hidden="true">内</span>
+    <span class="brand__text">
+      <span class="brand__name">INLAND</span>
+      <span class="brand__cn">倪志</span>
+    </span>
+  </a>
+
+  <nav class="site-nav" aria-label="主导航">
+    {
+      NAV.map((item) => (
+        <a
+          class="site-nav__link"
+          href={withBase(item.href)}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+          <span class="nav-en" aria-hidden="true">{item.en}</span>
+        </a>
+      ))
+    }
+    <a class="site-nav__rss" href={withBase('rss.xml')} aria-label="订阅 RSS">
+      <span aria-hidden="true">RSS</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </nav>
+</header>
